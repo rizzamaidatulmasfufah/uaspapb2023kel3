@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// IMAGES
+// variabel untuk gambar
 var headerImage =
     'https://i.ibb.co/s1RpfXD/pecel.jpg';
 
@@ -33,9 +33,9 @@ class MyHomePage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             SizedBox(height: 10.0),
-            FoodListview(),
+            HeaderPecel(),
             SizedBox(height: 10.0),
-            SelectTypeSection(),
+            MenuBar(),
             SizedBox(height: 20.0),
             MenuItemsList()
           ],
@@ -44,11 +44,9 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-
+//class bawah mengambang 
 class MyAppbar extends StatelessWidget {
-  const MyAppbar({
-    Key? key,
-  }) : super(key: key);
+  const MyAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -86,11 +84,9 @@ class MyAppbar extends StatelessWidget {
     );
   }
 }
-
+//class FlutterClipPolygon Menu
 class MyActionButton extends StatelessWidget {
-  const MyActionButton({
-    Key? key,
-  }) : super(key: key);
+  const MyActionButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -119,11 +115,9 @@ class MyActionButton extends StatelessWidget {
     );
   }
 }
-
+//bagian pecel judul pecel menu
 class MenuItemsList extends StatelessWidget {
-  const MenuItemsList({
-    Key? key,
-  }) : super(key: key);
+  const MenuItemsList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -139,23 +133,24 @@ class MenuItemsList extends StatelessWidget {
           SizedBox(height: 16.0),
           MenuItem(),
           MenuItem(),
+          MenuItem(),
+          MenuItem(),
         ],
       ),
     );
   }
 }
-
+//class menu item pecel menu
 class MenuItem extends StatelessWidget {
-  const MenuItem({
-    Key? key,
-  }) : super(key: key);
+  const MenuItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
+      child: SingleChildScrollView(
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start, //untuk mengatur penempatan dan penyusunan child dari tepi kiri
         children: <Widget>[
           Container(
             height: 100.0,
@@ -210,14 +205,35 @@ class MenuItem extends StatelessWidget {
           )
         ],
       ),
+      ),
     );
   }
 }
+//listView list menu bar
+class MenuBar extends StatelessWidget {
+  const MenuBar({super.key});
 
-class SelectTypeSection extends StatelessWidget {
-  const SelectTypeSection({
-    Key? key,
-  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: Container(
+        height: 100.0,
+        child: ListView( 
+          scrollDirection: Axis.horizontal,//bisa scroll kanan kiri
+          children: <Widget>[
+            SelectListMenuBar(),//dipanggil isi
+            SelectListMenuBar(),
+            SelectListMenuBar(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+//isi list manu bar
+class SelectListMenuBar extends StatelessWidget {
+  const SelectListMenuBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -225,14 +241,12 @@ class SelectTypeSection extends StatelessWidget {
     // final width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: SingleChildScrollView(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(
-              child: Container(
+              Container(
                 height: 100.0,
-                width: 120.0,
+                width: 460.0,
                 color: Colors.green,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -252,7 +266,6 @@ class SelectTypeSection extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
             Container(
               height: 100.0,
               width: 120.0,
@@ -297,15 +310,12 @@ class SelectTypeSection extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 }
-
-class FoodListview extends StatelessWidget {
-  const FoodListview({
-    Key? key,
-  }) : super(key: key);
+//pecel header
+class HeaderPecel extends StatelessWidget {
+  const HeaderPecel({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -313,10 +323,10 @@ class FoodListview extends StatelessWidget {
       padding: const EdgeInsets.only(left: 8.0),
       child: Container(
         height: 300.0,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
+        child: ListView( 
+          scrollDirection: Axis.horizontal,//bisa scroll kanan kiri
           children: <Widget>[
-            ItemCard(),
+            ItemCard(),//dipanggil class kotak gambar
             ItemCard(),
             ItemCard(),
             ItemCard(),
@@ -326,11 +336,9 @@ class FoodListview extends StatelessWidget {
     );
   }
 }
-
+//class kotak gambar
 class ItemCard extends StatelessWidget {
-  const ItemCard({
-    Key? key,
-  }) : super(key: key);
+  const ItemCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -342,7 +350,7 @@ class ItemCard extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(headerImage), fit: BoxFit.cover)),
-          child: Stack(
+          child: Stack(//STACK  untuk menumpuk beberapa widget di atas satu sama lain
             children: <Widget>[
               Container(
                 height: 320.0,
